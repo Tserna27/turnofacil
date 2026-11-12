@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reportes · Administración · TurnoFácil Quibdó</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado encabezado--admin" id="encabezado-admin"></header>
+  <div class="contenedor admin-diseno">
+    <nav class="admin-nav no-imprimir" id="admin-nav" aria-label="Secciones de administración"></nav>
+    <main class="admin-contenido" id="contenido">
+      <h1>Reportes</h1>
+      <p class="admin-subtitulo no-imprimir">Resumen y detalle de la gestión de citas de todos los usuarios.</p>
+      <div class="solo-impresion">
+        <p id="datos-impresion"></p>
+      </div>
+      <div class="admin-barra no-imprimir">
+        <div class="campo"><label for="filtro-estado">Estado</label>
+          <select id="filtro-estado"><option value="">Todos</option><option value="Programada">Programadas</option><option value="Cancelada">Canceladas</option></select></div>
+        <div class="campo"><label for="filtro-servicio">Servicio</label>
+          <select id="filtro-servicio"><option value="">Todos</option></select></div>
+        <div class="campo"><label for="filtro-desde">Desde</label><input type="date" id="filtro-desde"></div>
+        <div class="campo"><label for="filtro-hasta">Hasta</label><input type="date" id="filtro-hasta"></div>
+      </div>
+      <div id="contenido-reporte"></div>
+    </main>
+  </div>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-reportes.js"></script>
+</body>
+</html>

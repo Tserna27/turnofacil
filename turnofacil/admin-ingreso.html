@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ingreso de administración · TurnoFácil Quibdó</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado encabezado--admin">
+    <div class="contenedor admin-encabezado-fila">
+      <div class="admin-marca">
+        <a class="marca" href="index.html" aria-label="TurnoFácil Quibdó, ir al sitio">
+          <img src="img/logo-96.png" alt="" width="44" height="42">
+          <span class="marca__nombre">TurnoFácil<span class="marca__ciudad">Quibdó</span></span>
+        </a>
+        <span class="etiqueta-admin">Administración</span>
+      </div>
+      <div class="admin-acciones"><a href="index.html">Ver sitio</a></div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="panel-formulario">
+          <h1 style="font-size:2rem">Ingreso de administración</h1>
+          <p>Solo para el personal que gestiona TurnoFácil.</p>
+          <div class="aviso aviso--alerta" id="aviso-sinpermiso" hidden><p>Esa cuenta no tiene permisos de administración. Ingresa con una cuenta de administrador.</p></div>
+          <div class="aviso aviso--error" id="aviso-error" role="alert" hidden><p></p></div>
+
+          <form class="formulario" id="formulario-admin" novalidate>
+            <div class="campo">
+              <label for="correo">Correo de administrador</label>
+              <input type="email" id="correo" autocomplete="username" inputmode="email" aria-describedby="error-correo">
+              <p class="campo__error" id="error-correo"></p>
+            </div>
+            <div class="campo">
+              <label for="clave">Contraseña</label>
+              <div class="con-boton">
+                <input type="password" id="clave" autocomplete="current-password" aria-describedby="error-clave">
+                <button type="button" class="boton boton--contorno boton--pequeno" data-ver-clave="clave" aria-pressed="false">Mostrar</button>
+              </div>
+              <p class="campo__error" id="error-clave"></p>
+            </div>
+            <button type="submit" class="boton boton--primario">Entrar al panel</button>
+          </form>
+
+          <div class="aviso aviso--info" style="margin-top:1.5rem">
+            <p>Cuenta de prueba del prototipo:<br><strong id="dato-correo"></strong> · <strong id="dato-clave"></strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/admin-ingreso.js"></script>
+</body>
+</html>

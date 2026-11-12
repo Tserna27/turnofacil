@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión · TurnoFácil Quibdó</title>
+  <meta name="description" content="Inicia sesión en TurnoFácil Quibdó con tu correo y contraseña.">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <main id="contenido">
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="panel-formulario">
+
+          <div class="linea-formulario">
+            <img src="img/logo-96.png" alt="Logo de TurnoFácil Quibdó" class="logo">
+            <h1 style="font-size:2rem">Iniciar sesión</h1>
+          </div>
+
+          <div class="aviso aviso--ok" id="aviso-registrado" hidden><p>Tu cuenta quedó creada. Ahora inicia sesión con tu correo y contraseña.</p></div>
+          <div class="aviso aviso--info" id="aviso-necesita" hidden><p>Inicia sesión para continuar.</p></div>
+          <div class="aviso aviso--error" id="aviso-error" role="alert" hidden><p></p></div>
+
+          <form class="formulario" id="formulario-ingreso" novalidate>
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" autocomplete="email" inputmode="email" aria-describedby="error-correo">
+              <p class="campo__error" id="error-correo"></p>
+            </div>
+            <div class="campo">
+              <label for="clave">Contraseña</label>
+              <div class="con-boton">
+                <input type="password" id="clave" name="clave" autocomplete="current-password" aria-describedby="error-clave">
+                <button type="button" class="boton boton--contorno boton--pequeno" data-ver-clave="clave" aria-pressed="false">Mostrar</button>
+              </div>
+              <p class="campo__error" id="error-clave"></p>
+            </div>
+            <button type="submit" class="boton boton--primario">Entrar</button>
+          </form>
+          <p class="pie-formulario">¿Aún no tienes cuenta? <a href="registro.html">Regístrate</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/inicio-sesion.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TurnoFácil Quibdó</title>
+  <meta name="description" content="Agenda tu cita médica en Quibdó con fecha y hora fijas, desde tu celular y sin hacer fila de madrugada.">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado" id="encabezado"></header>
+
+  <main id="contenido">
+    <section class="portada">
+      <div class="contenedor portada__rejilla">
+        <div class="portada__texto">
+          <h1>Somos TurnoFácil,</h1>
+          <h2>la forma más rápida de <br> agendar tu cita médica en Quibdó</h2>
+          <p class="destacado">Elige el servicio desde tu celular y el sistema te asigna el día y la hora. Tu turno queda guardado y lo consultas cuando quieras.</p>
+          <div class="grupo-botones">
+            <a class="boton boton--primario" href="agendar.html">Agendar mi cita</a>
+            <a class="boton boton--contorno" href="servicios.html">Ver servicios</a>
+          </div>
+          <p class="portada__apoyo">¿Es tu primera vez? <a href="registro.html">Crea tu cuenta</a> en un minuto.</p>
+        </div>
+
+        <div>
+          <div class="contraste" aria-label="Antes y ahora">
+            
+            <div class="antes">
+              <h3>Antes</h3>
+              <img src="img/antes.jpg" alt="Fila de personas esperando en la calle para conseguir un ficho" class="contraste-imagen1"><br>
+              <p class="fondo-contraste">Hacer fila en la calle para conseguir un ficho.</p>
+            </div>
+
+            <div class="ahora">
+              <h3>Ahora</h3>
+              <img src="img/ahora.jpg" alt="Persona usando su celular para agendar una cita médica" class="contraste-imagen2"><br>
+              <p class="fondo-contraste">Agenda tu cita desde tu celular y sin hacer fila.</p>
+            </div>
+          
+          </div>
+          <img src="img/Escena.gif" alt="" class="escena">
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="seccion" aria-labelledby="titulo-pasos">
+      <div class="contenedor">
+        <div class="seccion__titulo">
+          <h2 id="titulo-pasos">Agendar toma cuatro pasos</h2>
+          <p>Sin papeles y sin salir de casa.</p>
+        </div>
+        <ol class="pasos-lista">
+          <li><strong>Elige el servicio</strong><span>Según lo que te pasa: medicina general, control prenatal, vacunación y más.</span></li>
+          <li><strong>Recibe tu día y hora</strong><span>Se asignan al azar entre los cupos libres, de lunes a viernes. Cada consulta dura 15 minutos.</span></li>
+          <li><strong>Escribe tus datos</strong><span>Nombre, cédula, EPS, teléfono y qué sientes.</span></li>
+          <li><strong>Confirma</strong><span>Recibes tu comprobante para guardar o imprimir.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="seccion seccion--blanca" aria-labelledby="titulo-servicios">
+      <div class="contenedor">
+        <div class="seccion__titulo">
+          <h2 id="titulo-servicios">Servicios disponibles</h2>
+          <p>Escoge el que corresponde a lo que necesitas. Al agendar, ya queda seleccionado.</p>
+        </div>
+        <div class="rejilla rejilla--3" id="lista-servicios"></div>
+      </div>
+    </section>
+
+    <section class="seccion" aria-labelledby="titulo-prioridad">
+      <div class="contenedor dos-columnas">
+        <div>
+          <h2 id="titulo-prioridad">Pensado para quienes más lo necesitan</h2>
+          <p>Los adultos mayores, las gestantes y las madres o padres con niños son quienes más sufren la espera de pie. Por eso el formulario te pregunta si perteneces a uno de estos grupos.</p>
+        </div>
+        <div class="tarjeta tarjeta--sombra">
+          <h3>¿No tienes internet o no sabes usarlo?</h3>
+          <p>Un familiar o el personal de recepción puede agendar por ti. Al registrar la cita se indica quién la hizo.</p>
+          <a class="boton boton--menta" href="ayuda.html">Cómo agendar mi cita</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" style="padding-top:0">
+      <div class="contenedor">
+        <div class="bloque-llamado">
+          <div>
+            <h2>Cuida tu salud y cuéntanos tu experiencia</h2>
+            <p>Lee consejos breves de salud y bienestar, y deja tu opinión sobre el servicio.</p>
+          </div>
+          <a class="boton boton--menta" href="blog.html">Ir al blog y opiniones</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/servicios.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>

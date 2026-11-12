@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crear cuenta · TurnoFácil Quibdó</title>
+  <meta name="description" content="Crea tu cuenta en TurnoFácil Quibdó para agendar tus citas.">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <main id="contenido">
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="panel-formulario">
+
+          <div class="linea-formulario">
+            <img src="img/logo-96.png" alt="Logo de TurnoFácil Quibdó" class="logo">
+            <h1 style="font-size:2rem">Crear cuenta</h1>
+          </div>
+          <p>Con tu correo y una contraseña podrás agendar y consultar tus citas.</p>
+          <div class="aviso aviso--alerta"><p>Es un prototipo de prueba: no escribas contraseñas que uses en otros sitios.</p></div>
+
+          <form class="formulario" id="formulario-registro" novalidate>
+            <div class="campo">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" aria-describedby="error-nombre">
+              <p class="campo__error" id="error-nombre"></p>
+            </div>
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" autocomplete="email" inputmode="email" aria-describedby="error-correo">
+              <p class="campo__error" id="error-correo"></p>
+            </div>
+            <div class="campo">
+              <label for="clave">Contraseña nueva</label>
+              <div class="con-boton">
+                <input type="password" id="clave" name="clave" autocomplete="new-password" aria-describedby="ayuda-clave error-clave">
+                <button type="button" class="boton boton--contorno boton--pequeno" data-ver-clave="clave" aria-pressed="false">Mostrar</button>
+              </div>
+              <p class="campo__ayuda" id="ayuda-clave">Mínimo 8 caracteres, con letras y números.</p>
+              <p class="campo__error" id="error-clave"></p>
+            </div>
+            <div class="campo">
+              <label for="clave2">Confirma tu contraseña</label>
+              <input type="password" id="clave2" name="clave2" autocomplete="new-password" aria-describedby="error-clave2">
+              <p class="campo__error" id="error-clave2"></p>
+            </div>
+            <div class="campo">
+              <label class="opcion" for="acepto">
+                <input type="checkbox" id="acepto" name="acepto" aria-describedby="error-acepto">
+                <span>Acepto la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y los <a href="terminos.html" target="_blank" rel="noopener">términos y condiciones</a>.</span>
+              </label>
+              <p class="campo__error" id="error-acepto"></p>
+            </div>
+            <button type="submit" class="boton boton--primario">Crear mi cuenta</button>
+          </form>
+          <p class="pie-formulario">¿Ya tienes cuenta? <a href="iniciar-sesion.html">Inicia sesión</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

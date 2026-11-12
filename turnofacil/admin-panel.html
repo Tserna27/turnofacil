@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resumen · Administración · TurnoFácil Quibdó</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado encabezado--admin" id="encabezado-admin"></header>
+  <div class="contenedor admin-diseno">
+    <nav class="admin-nav no-imprimir" id="admin-nav" aria-label="Secciones de administración"></nav>
+    <main class="admin-contenido" id="contenido">
+      <h1>Resumen</h1>
+      <p class="admin-subtitulo no-imprimir">Lo que está pasando en TurnoFácil.</p>
+      <div class="metricas metricas--tres" id="metricas"></div>
+      <div class="rejilla rejilla--2">
+        <section class="tarjeta" aria-labelledby="titulo-actividad">
+          <h2 id="titulo-actividad" style="font-size:1.2rem">Actividad reciente</h2>
+          <ul class="lista-simple" id="actividad-reciente"></ul>
+          <p style="margin-top:1rem"><a href="admin-actividad.html">Ver toda la actividad</a></p>
+        </section>
+        <section class="tarjeta" aria-labelledby="titulo-proximas">
+          <h2 id="titulo-proximas" style="font-size:1.2rem">Próximas citas</h2>
+          <ul class="lista-simple" id="proximas-citas"></ul>
+          <p style="margin-top:1rem"><a href="admin-citas.html">Ver todas las citas</a></p>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-panel.js"></script>
+</body>
+</html>

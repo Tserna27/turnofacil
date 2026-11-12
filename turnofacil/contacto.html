@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto · TurnoFácil Quibdó</title>
+  <meta name="description" content="Escríbenos si tienes una consulta o necesitas soporte con TurnoFácil Quibdó.">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado" id="encabezado"></header>
+
+  <main id="contenido">
+    <div class="cabecera-pagina">
+      <div class="contenedor">
+        <h1>Contacto</h1>
+        <p>¿Tienes una duda o un problema con tu cita? Escríbenos.</p>
+        <p id="nota-correo"></p>
+      </div>
+    </div>
+
+    <section class="seccion" style="padding-top:2rem">
+      <div class="contenedor dos-columnas">
+        <div>
+          <div class="aviso aviso--ok" id="mensaje-enviado" role="status" hidden>
+            <div>
+              <p><strong>Recibimos tu mensaje.</strong></p>
+              <p id="referencia-mensaje"></p>
+              <p style="margin-top:.75rem"><button type="button" class="boton boton--contorno boton--pequeno" id="otro-mensaje">Enviar otro mensaje</button></p>
+            </div>
+          </div>
+
+          <form class="formulario" id="formulario-contacto" novalidate>
+            <div class="campo">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" autocomplete="name" aria-describedby="error-nombre">
+              <p class="campo__error" id="error-nombre"></p>
+            </div>
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" autocomplete="email" inputmode="email" aria-describedby="error-correo">
+              <p class="campo__error" id="error-correo"></p>
+            </div>
+            <div class="campo">
+              <label for="asunto">Asunto</label>
+              <select id="asunto" aria-describedby="error-asunto">
+                <option value="">Elige una opción</option>
+                <option>Duda sobre una cita</option>
+                <option>Cambio o cancelación de una cita</option>
+                <option>Problema con la página</option>
+                <option>Sugerencia</option>
+                <option>Otro tema</option>
+              </select>
+              <p class="campo__error" id="error-asunto"></p>
+            </div>
+            <div class="campo">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" maxlength="600" aria-describedby="error-mensaje"></textarea>
+              <p class="contador" id="contador-mensaje" aria-hidden="true">0 / 600</p>
+              <p class="campo__error" id="error-mensaje"></p>
+            </div>
+            <button type="submit" class="boton boton--primario">Enviar mensaje</button>
+          </form>
+        </div>
+
+        <aside class="tarjeta tarjeta--sombra">
+          <h2 style="font-size:1.3rem">Dónde atendemos</h2>
+          <p><strong><span id="direccion-atencion"></span></strong></p>
+          <p class="campo__ayuda">Las citas se atienden en esta dirección. No necesitas elegir lugar al agendar.</p>
+          <h3 style="margin-top:1.5rem">¿Prefieres ver las preguntas frecuentes?</h3>
+          <a class="boton boton--contorno boton--pequeno" href="ayuda.html">Ir a ayuda</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
+</html>

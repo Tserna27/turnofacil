@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog · Administración · TurnoFácil Quibdó</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado encabezado--admin" id="encabezado-admin"></header>
+  <div class="contenedor admin-diseno">
+    <nav class="admin-nav no-imprimir" id="admin-nav" aria-label="Secciones de administración"></nav>
+    <main class="admin-contenido" id="contenido">
+      <h1>Blog</h1>
+      <p class="admin-subtitulo no-imprimir">Crea y edita las entradas que se ven en la página de Blog, con texto e imagen.</p>
+      <div class="grupo-botones no-imprimir" style="margin-bottom:1.25rem">
+        <button type="button" class="boton boton--primario" id="boton-nueva">Nueva entrada</button>
+      </div>
+
+      <section class="panel-admin-form" id="panel-formulario" aria-labelledby="titulo-formulario" hidden>
+        <h2 id="titulo-formulario" style="font-size:1.3rem">Nueva entrada</h2>
+        <form class="formulario" id="formulario-entrada" novalidate>
+          <div class="campo">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" maxlength="100" aria-describedby="error-titulo">
+            <p class="campo__error" id="error-titulo"></p>
+          </div>
+          <div class="campo">
+            <label for="resumen">Resumen</label>
+            <input type="text" id="resumen" maxlength="200" aria-describedby="ayuda-resumen error-resumen">
+            <p class="campo__ayuda" id="ayuda-resumen">Una frase que se ve antes de abrir la entrada.</p>
+            <p class="campo__error" id="error-resumen"></p>
+          </div>
+          <div class="campo">
+            <label for="contenido-entrada">Texto de la entrada</label>
+            <textarea id="contenido-entrada" style="min-height:14rem" aria-describedby="ayuda-contenido error-contenido-entrada"></textarea>
+            <p class="campo__ayuda" id="ayuda-contenido">Separa los párrafos con una línea en blanco.</p>
+            <p class="campo__error" id="error-contenido-entrada"></p>
+          </div>
+          <div class="campo">
+            <label for="imagen">Imagen (opcional)</label>
+            <input type="file" id="imagen" accept="image/png,image/jpeg,image/webp" aria-describedby="ayuda-imagen error-imagen">
+            <p class="campo__ayuda" id="ayuda-imagen">JPG, PNG o WebP. Se reduce sola para que la página cargue rápido.</p>
+            <p class="campo__error" id="error-imagen"></p>
+            <img class="vista-previa" id="vista-previa" alt="Vista previa de la imagen elegida" hidden>
+            <div><button type="button" class="boton boton--contorno boton--pequeno" id="quitar-imagen" hidden>Quitar imagen</button></div>
+          </div>
+          <div class="campo" id="campo-alt" hidden>
+            <label for="alt-imagen">Descripción de la imagen</label>
+            <input type="text" id="alt-imagen" maxlength="140" aria-describedby="ayuda-alt">
+            <p class="campo__ayuda" id="ayuda-alt">Para quienes no pueden verla. Ejemplo: «Mujer lavándose las manos con jabón».</p>
+          </div>
+          <label class="opcion" for="publicada"><input type="checkbox" id="publicada" checked> <span>Publicar en el sitio</span></label>
+          <div class="grupo-botones">
+            <button type="submit" class="boton boton--primario" id="boton-guardar">Guardar entrada</button>
+            <button type="button" class="boton boton--contorno" id="boton-cancelar">Cancelar</button>
+          </div>
+        </form>
+      </section>
+
+      <div class="rejilla" id="lista-entradas" aria-live="polite"></div>
+    </main>
+  </div>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+TurnoFácil Quibdó — prototipo web (HTML, CSS y JavaScript, todo en español)
+
+CÓMO ABRIRLO
+  Descomprime la carpeta y abre index.html con Chrome. No necesita instalar nada.
+  Para publicarlo (por ejemplo en Render) sube la carpeta completa.
+
+SITIO DE LOS USUARIOS
+  index, quienes-somos, servicios, contacto, blog (con opiniones), ayuda, privacidad, terminos
+  registro, iniciar-sesion
+  agendar (4 pasos), mis-citas, comprobante
+  Las citas son de lunes a viernes y no se asigna médico.
+  El día y la hora NO se escogen: el sistema los asigna al azar entre los cupos libres.
+  Cada cita es una consulta de 15 minutos con el médico.
+  El usuario NO puede editar ni cancelar su cita. Lo pide por correo a la administración
+  (en "Mis citas" y en el comprobante hay un botón que abre el correo ya redactado).
+
+PANEL DE ADMINISTRACIÓN  (entrar por admin-ingreso.html, o por "Administración" en el pie de página)
+  Cuenta de prueba:  admin@turnofacil.com   |   Admin12345
+  admin-panel      Resumen: usuarios, citas, mensajes, actividad reciente y próximas citas
+  admin-citas      Citas de todos los usuarios: calendario semanal (lunes a viernes) y lista; detalle,
+                   cambiar día y hora, y cancelar (solo la administración puede hacerlo)
+  admin-reportes   Reportes con filtros, gráficas, tabla completa, impresión/PDF y descarga CSV
+  admin-usuarios   Tabla de usuarios: registro, último ingreso, cantidad de ingresos, citas y opiniones
+  admin-actividad  Registro de lo que se hizo (ingresos, citas, opiniones, mensajes, blog), con filtros
+  admin-blog       Crear, editar, publicar/ocultar y eliminar entradas con texto e imagen
+  admin-mensajes   Mensajes del formulario de contacto (marcar como atendido)
+
+DÓNDE CAMBIAR LOS DATOS DE EJEMPLO  (archivo js/comun.js, al inicio)
+  DIRECCION_ATENCION  -> la única dirección donde se atiende (no se elige lugar al agendar)
+  SERVICIOS           -> servicios y descripciones
+  DURACION_CONSULTA   -> minutos de cada consulta (15)
+  HORAS_MANANA / HORAS_TARDE -> horarios de las citas (se generan cada 15 minutos)
+  CORREO_ATENCION     -> correo donde los usuarios piden cambiar o cancelar una cita (hoy usa el del admin)
+  EPS, FESTIVOS       -> lista de EPS y días sin atención
+  ADMIN_CORREO / ADMIN_CLAVE_DEMO -> cuenta de administrador
+
+IMPORTANTE
+  Es un prototipo sin servidor: los datos se guardan en el navegador (localStorage).
+  Cada navegador tiene sus propios datos: lo que un usuario agenda en su celular no se ve en el
+  panel abierto en otro dispositivo. Para eso se necesita la versión con base de datos.
+  Los cupos ocupados que se ven al agendar son simulados.

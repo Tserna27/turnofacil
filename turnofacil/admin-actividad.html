@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actividad · Administración · TurnoFácil Quibdó</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado encabezado--admin" id="encabezado-admin"></header>
+  <div class="contenedor admin-diseno">
+    <nav class="admin-nav no-imprimir" id="admin-nav" aria-label="Secciones de administración"></nav>
+    <main class="admin-contenido" id="contenido">
+      <h1>Actividad</h1>
+      <p class="admin-subtitulo no-imprimir">Registro de lo que hacen los usuarios y el administrador (últimas 500 acciones).</p>
+      <div class="admin-barra">
+        <div class="campo"><label for="filtro-tipo">Tipo de actividad</label>
+          <select id="filtro-tipo"><option value="">Todas</option></select></div>
+        <div class="campo"><label for="busqueda">Buscar</label>
+          <input type="search" id="busqueda" placeholder="Nombre, correo o detalle" autocomplete="off"></div>
+      </div>
+      <div id="tabla-actividad" aria-live="polite"></div>
+    </main>
+  </div>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-actividad.js"></script>
+</body>
+</html>

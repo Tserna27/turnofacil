@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog y opiniones · TurnoFácil Quibdó</title>
+  <meta name="description" content="Consejos breves de salud y bienestar, y opiniones de los usuarios de TurnoFácil Quibdó.">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado" id="encabezado"></header>
+
+  <main id="contenido">
+    <div class="cabecera-pagina">
+      <div class="contenedor">
+        <h1>Blog y opiniones</h1>
+        <p>Consejos breves de salud y bienestar, y lo que opinan quienes usan TurnoFácil.</p>
+      </div>
+    </div>
+
+    <section class="seccion" style="padding-bottom:1rem" aria-labelledby="titulo-blog">
+      <div class="contenedor">
+        <h2 id="titulo-blog">Salud y bienestar</h2>
+        <div class="rejilla" id="lista-articulos"></div>
+        <p class="campo__ayuda" style="margin-top:1rem">Estos textos son informativos y no reemplazan la consulta con un profesional de la salud.</p>
+      </div>
+    </section>
+
+    <section class="seccion" id="opiniones" aria-labelledby="titulo-opiniones">
+      <div class="contenedor dos-columnas">
+        <div>
+          <h2 id="titulo-opiniones">Opiniones de usuarios</h2>
+          <div class="rejilla" id="lista-opiniones" aria-live="polite"></div>
+        </div>
+
+        <div class="tarjeta tarjeta--sombra" id="zona-formulario-opinion">
+          <h2 style="font-size:1.4rem" id="titulo-formulario-opinion">Deja tu opinión</h2>
+          <div id="necesita-sesion" hidden>
+            <p>Para opinar, inicia sesión con tu cuenta.</p>
+            <a class="boton boton--primario" href="iniciar-sesion.html?volver=blog.html">Iniciar sesión</a>
+          </div>
+          <form class="formulario" id="formulario-opinion" novalidate hidden>
+            <fieldset class="campo" id="grupo-calificacion" tabindex="-1" aria-describedby="error-grupo-calificacion">
+              <legend>¿Cómo calificas el servicio?</legend>
+              <div class="estrellas-entrada" id="estrellas-entrada"></div>
+              <p class="campo__error" id="error-grupo-calificacion"></p>
+            </fieldset>
+            <div class="campo">
+              <label for="texto-opinion">Tu comentario</label>
+              <textarea id="texto-opinion" maxlength="400" aria-describedby="error-texto-opinion"></textarea>
+              <p class="contador" id="contador-opinion" aria-hidden="true">0 / 400</p>
+              <p class="campo__error" id="error-texto-opinion"></p>
+            </div>
+            <div class="grupo-botones">
+              <button type="submit" class="boton boton--primario" id="boton-guardar-opinion">Publicar opinión</button>
+              <button type="button" class="boton boton--contorno" id="boton-cancelar-edicion" hidden>Cancelar edición</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/blog.js"></script>
+</body>
+</html>

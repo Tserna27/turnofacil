@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis citas · TurnoFácil Quibdó</title>
+  <meta name="description" content="Consulta el día, la hora y el estado de tus citas médicas.">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado" id="encabezado"></header>
+
+  <main id="contenido">
+    <div class="cabecera-pagina">
+      <div class="contenedor">
+        <h1>Mis citas</h1>
+        <p>Mira el estado, la hora y el lugar de cada cita.</p>
+      </div>
+    </div>
+
+    <section class="seccion" style="padding-top:2rem">
+      <div class="contenedor" style="max-width:52rem">
+        <div id="mensaje-citas"></div>
+        <div class="aviso aviso--info"><p id="nota-cambios"></p></div>
+        <div class="filtros" role="group" aria-label="Filtrar citas por estado" id="filtros">
+          <button type="button" class="filtro" data-filtro="todas" aria-pressed="true">Todas</button>
+          <button type="button" class="filtro" data-filtro="Programada" aria-pressed="false">Programadas</button>
+          <button type="button" class="filtro" data-filtro="Cancelada" aria-pressed="false">Canceladas</button>
+        </div>
+        <div class="lista-citas" id="lista-citas" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/mis-citas.js"></script>
+</body>
+</html>

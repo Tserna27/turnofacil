@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mensajes · Administración · TurnoFácil Quibdó</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado encabezado--admin" id="encabezado-admin"></header>
+  <div class="contenedor admin-diseno">
+    <nav class="admin-nav no-imprimir" id="admin-nav" aria-label="Secciones de administración"></nav>
+    <main class="admin-contenido" id="contenido">
+      <h1>Mensajes</h1>
+      <p class="admin-subtitulo no-imprimir">Mensajes que las personas envían desde la página de Contacto.</p>
+      <div class="admin-barra">
+        <div class="campo"><label for="filtro-estado">Mostrar</label>
+          <select id="filtro-estado"><option value="">Todos</option><option value="pendiente">Pendientes</option><option value="atendido">Atendidos</option></select></div>
+      </div>
+      <div class="rejilla" id="lista-mensajes" aria-live="polite"></div>
+    </main>
+  </div>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-mensajes.js"></script>
+</body>
+</html>

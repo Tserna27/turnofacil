@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Servicios · TurnoFácil Quibdó</title>
+  <meta name="description" content="Servicios y especialidades disponibles para agendar tu cita en TurnoFácil Quibdó.">
+  <link rel="icon" type="image/png" href="img/logo-64.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="encabezado" id="encabezado"></header>
+
+  <main id="contenido">
+    <div class="cabecera-pagina">
+      <div class="contenedor">
+        <h1>Servicios</h1>
+        <p>Elige según lo que te ocurre y agenda tu cita de lunes a viernes.</p>
+      </div>
+    </div>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="campo" style="max-width:34rem;margin-bottom:1.5rem">
+          <label for="buscador-servicios">¿Qué te ocurre?</label>
+          <input type="search" id="buscador-servicios" placeholder="Por ejemplo: dolor de muela, embarazo, fiebre" autocomplete="off">
+          <p class="campo__ayuda">Escribe una palabra y te mostramos el servicio que corresponde.</p>
+          <p class="campo__ayuda" id="mensaje-busqueda" role="status" aria-live="polite"></p>
+        </div>
+        <div class="rejilla rejilla--3" id="lista-servicios"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+  <script src="js/comun.js"></script>
+  <script src="js/servicios.js"></script>
+</body>
+</html>

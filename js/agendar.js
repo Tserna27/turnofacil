@@ -1,4 +1,4 @@
-/* Asistente para agendar citas (4 pasos). El día y la hora se asignan al azar; los usuarios no editan ni cancelan citas. */
+/* Asistente para agendar citas (4 pasos). El usuario elige el día y la hora (manual) o el sistema se los asigna (automática); los usuarios no editan ni cancelan citas. */
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = requerirSesion();
   if (!usuario) return;
@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("formulario-cita");
   const pasos = Array.from(formulario.querySelectorAll(".paso"));
   const marcas = Array.from(document.querySelectorAll("#indicador li"));
-  const estado = { paso: 1, servicioId: null, fecha: null, hora: null };
+  const estado = { paso: 1, servicioId: null, fecha: null, hora: null, modo: "automatico" };
   // Guarda el sorteo para que recargar la página no cambie el día y la hora asignados
   const CLAVE_ASIGNACION = "tf_asignacion_" + usuario.correo;
 
@@ -41,6 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
       Almacen.guardar(CLAVE_ASIGNACION, null);
       ponerError("grupo-servicio", "");
     }
+    // Cambia entre cita automática (la asigna el sistema) y manual (la escoge el usuario)
+    if (e.target.name === "modo") {
+      estado.modo = e.target.value;
+      estado.fecha = null; estado.hora = null;
+      Almacen.guardar(CLAVE_ASIGNACION, null);
+      ponerError("grupo-asignacion", "");
+      document.getElementById("aviso-reasignacion").hidden = true;
+      if (estado.paso === 2) { asegurarAsignacion(); pintarAsignacion(); }
+    }
+    if (e.target.id === "dia-manual") {
+      estado.fecha = e.target.value || null; estado.hora = null;
+      ponerError("grupo-asignacion", "");
+      pintarAsignacion();
+    }
+    if (e.target.id === "hora-manual") {
+      estado.hora = e.target.value || null;
+      ponerError("grupo-asignacion", "");
+      pintarAsignacion();
+    }
   });
 
   /* ---------- Paso 2: día y hora asignados al azar ---------- */
@@ -58,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Conserva el cupo ya asignado si sigue libre; si no, usa el sorteo guardado o hace uno nuevo.
   function asegurarAsignacion() {
+    if (estado.modo === "manual") return cupoSigueLibre(estado.fecha, estado.hora); // en manual no se sortea
     if (cupoSigueLibre(estado.fecha, estado.hora)) return true;
     const g = Almacen.leer(CLAVE_ASIGNACION, null);
     if (g && g.servicioId === estado.servicioId && diasDisponibles().includes(g.fecha) && cupoSigueLibre(g.fecha, g.hora)) {
@@ -67,10 +87,31 @@ document.addEventListener("DOMContentLoaded", () => {
     return sortear();
   }
 
+  // Llena las listas de día y hora del modo manual (las horas ocupadas salen desactivadas)
+  function pintarOpcionesManual() {
+    const selDia = document.getElementById("dia-manual");
+    const selHora = document.getElementById("hora-manual");
+    selDia.innerHTML = '<option value="">Elige un día</option>' + diasDisponibles().map((f) => {
+      const libres = cuposLibres(estado.servicioId, f);
+      return `<option value="${f}" ${libres ? "" : "disabled"} ${f === estado.fecha ? "selected" : ""}>${escaparHtml(formatearFecha(f))}${libres ? " · quedan " + libres + " de " + cuposPorDia() + " cupos" : " (sin cupos)"}</option>`;
+    }).join("");
+    selHora.disabled = !estado.fecha;
+    selHora.innerHTML = '<option value="">' + (estado.fecha ? "Elige una hora" : "Primero elige el día") + "</option>" +
+      (estado.fecha ? todasLasHoras().map((h) => {
+        const ocupada = cupoOcupado(estado.servicioId, estado.fecha, h) || usuarioTieneCitaEn(usuario.correo, estado.fecha, h);
+        return `<option value="${h}" ${ocupada ? "disabled" : ""} ${h === estado.hora ? "selected" : ""}>${escaparHtml(formatearRangoHora(h))}${ocupada ? " (ocupada)" : ""}</option>`;
+      }).join("") : "");
+  }
+
   function pintarAsignacion(mensaje) {
     const s = buscarServicio(estado.servicioId);
-    document.getElementById("texto-servicio-elegido").textContent =
-      "Servicio elegido: " + s.nombre + ". El día y la hora se asignan al azar entre los cupos libres de los próximos días hábiles; no se pueden escoger.";
+    const manual = estado.modo === "manual";
+    document.getElementById("texto-servicio-elegido").textContent = "Servicio elegido: " + s.nombre + ". " + (manual
+      ? "Escoge el día y la hora que prefieras entre los cupos libres (de 7:00 a. m. a 3:00 p. m.)."
+      : "El sistema te asigna un día y una hora libres de los próximos días hábiles.");
+
+    document.getElementById("zona-manual").hidden = !manual;
+    if (manual) pintarOpcionesManual();
 
     const aviso = document.getElementById("aviso-reasignacion");
     if (mensaje !== undefined) {
@@ -78,16 +119,22 @@ document.addEventListener("DOMContentLoaded", () => {
       aviso.querySelector("p").textContent = mensaje || "";
     }
 
-    document.getElementById("asignacion").innerHTML = estado.fecha ? `
-      <p class="campo__ayuda">Tu cita quedó asignada para</p>
-      <p class="ficho__fecha">${escaparHtml(formatearFecha(estado.fecha))}</p>
-      <p class="ficho__hora">${escaparHtml(formatearHora(estado.hora))}</p>
-      <p><strong>Consulta de ${DURACION_CONSULTA} minutos</strong> con el médico (${escaparHtml(formatearRangoHora(estado.hora))}).</p>`
-      : `<p><strong>Por ahora no hay cupos libres para este servicio.</strong></p>
+    const tarjeta = document.getElementById("asignacion");
+    if (estado.fecha && estado.hora) {
+      tarjeta.innerHTML = `
+        <p class="campo__ayuda">${manual ? "Elegiste esta cita" : "Tu cita quedó asignada para"}</p>
+        <p class="ficho__fecha">${escaparHtml(formatearFecha(estado.fecha))}</p>
+        <p class="ficho__hora">${escaparHtml(formatearHora(estado.hora))}</p>
+        <p><strong>Consulta de ${DURACION_CONSULTA} minutos</strong> con el médico (${escaparHtml(formatearRangoHora(estado.hora))}).</p>`;
+    } else if (manual) {
+      tarjeta.innerHTML = `<p class="campo__ayuda">Elige arriba el día y la hora de tu cita.</p>`;
+    } else {
+      tarjeta.innerHTML = `<p><strong>Por ahora no hay cupos libres para este servicio.</strong></p>
          <p class="campo__ayuda">Intenta de nuevo más tarde.</p>`;
+    }
 
     document.getElementById("detalle-dia").innerHTML =
-      `<strong>Lugar:</strong> ${escaparHtml(DIRECCION_ATENCION)}.<br>Atendemos de lunes a viernes. Después de confirmar, la cita solo la puede cambiar o cancelar la administración: escribe a <a href="mailto:${escaparHtml(CORREO_ATENCION)}">${escaparHtml(CORREO_ATENCION)}</a>.`;
+      `<strong>Lugar:</strong> ${escaparHtml(DIRECCION_ATENCION)}.<br>Atendemos de lunes a viernes, de 7:00 a. m. a 3:00 p. m. Después de confirmar, la cita solo la puede cambiar o cancelar la administración: escribe a <a href="mailto:${escaparHtml(CORREO_ATENCION)}">${escaparHtml(CORREO_ATENCION)}</a>.`;
   }
 
   /* ---------- Paso 3: datos del paciente ---------- */
@@ -209,6 +256,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function validarPaso(n) {
     if (n === 1) {
       return aplicarErrores([["grupo-servicio", estado.servicioId ? "" : "Elige un servicio para continuar."]]);
+    }
+    if (n === 2 && estado.modo === "manual") {
+      if (!estado.fecha || !estado.hora) {
+        return aplicarErrores([["grupo-asignacion", "Elige el día y la hora de tu cita para continuar."]]);
+      }
+      if (!cupoSigueLibre(estado.fecha, estado.hora)) {
+        // Otra persona tomó ese cupo mientras tanto
+        estado.hora = null;
+        pintarAsignacion("Ese cupo ya fue tomado por otra persona. Elige otra hora.");
+        return false;
+      }
+      return aplicarErrores([["grupo-asignacion", ""]]);
     }
     if (n === 2) {
       const antes = estado.fecha + " " + estado.hora;

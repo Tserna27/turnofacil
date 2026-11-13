@@ -65,10 +65,9 @@ function generarFranjas(primera, ultima) {
   return horas;
 }
 
-// Horario de ejemplo: la última consulta de la mañana empieza a las 11:45 (termina a las 12:00)
-// y la última de la tarde a las 16:45 (termina a las 5:00 p. m.)
-const HORAS_MANANA = generarFranjas("07:00", "11:45");
-const HORAS_TARDE = generarFranjas("14:00", "16:45");
+// Horario de atención: de 7:00 a. m. a 3:00 p. m. (la última consulta empieza a las 2:45 p. m.)
+const HORAS_MANANA = generarFranjas("07:00", "15:45");
+const HORAS_TARDE = [];
 
 // Festivos de Colombia (no hay citas esos días)
 const FESTIVOS = ["2026-11-02", "2026-11-16", "2026-12-08", "2026-12-25", "2027-01-01", "2027-01-11"];

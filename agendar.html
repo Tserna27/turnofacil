@@ -56,10 +56,29 @@
               <h2 id="titulo-paso-2" tabindex="-1">2. Tu día y tu hora</h2>
               <p class="campo__ayuda" id="texto-servicio-elegido"></p>
 
+              <fieldset class="campo" id="grupo-modo">
+                <legend>¿Cómo quieres escoger tu cita?</legend>
+                <div class="opciones">
+                  <label class="opcion"><input type="radio" name="modo" value="automatico" checked> <span>Automática: el sistema me asigna un cupo libre</span></label>
+                  <label class="opcion"><input type="radio" name="modo" value="manual"> <span>Manual: yo escojo el día y la hora</span></label>
+                </div>
+              </fieldset>
+
               <div class="aviso aviso--info" id="aviso-reasignacion" role="status" hidden><p></p></div>
 
+              <div id="zona-manual" hidden>
+                <div class="campo">
+                  <label for="dia-manual">Día</label>
+                  <select id="dia-manual"></select>
+                </div>
+                <div class="campo">
+                  <label for="hora-manual">Hora (de 7:00 a. m. a 3:00 p. m.)</label>
+                  <select id="hora-manual"></select>
+                </div>
+              </div>
+
               <fieldset class="campo" id="grupo-asignacion" tabindex="-1" aria-describedby="error-grupo-asignacion">
-                <legend class="solo-lectores">Día y hora asignados</legend>
+                <legend class="solo-lectores">Día y hora de la cita</legend>
                 <div class="tarjeta tarjeta--sombra" id="asignacion" aria-live="polite" style="text-align:center"></div>
                 <p class="campo__error" id="error-grupo-asignacion"></p>
               </fieldset>

@@ -75,6 +75,11 @@ const TEXTO_HORARIO = "de " + formatearHora(HORA_APERTURA) + " a " + formatearHo
 // Con 40 franjas al día: 1 médico = 40 cupos, 2 = 80 cupos, 3 = 120 cupos por servicio y día.
 const MEDICOS_POR_FRANJA = 2;
 
+// Festivos de Colombia (no hay citas esos días)
+const FESTIVOS = ["2026-11-02", "2026-11-16", "2026-12-08", "2026-12-25", "2027-01-01", "2027-01-11"];
+
+const DIAS_VISIBLES = 10; // días hábiles que se muestran al agendar
+
 /* ---------- Almacenamiento en el navegador ---------- */
 
 const memoria = {}; // respaldo si el navegador bloquea localStorage

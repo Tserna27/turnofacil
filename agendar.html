@@ -16,7 +16,7 @@
     <div class="cabecera-pagina">
       <div class="contenedor">
         <h1 id="titulo-pagina">Agendar cita</h1>
-        <p id="subtitulo-pagina">Cuatro pasos y listo. Puedes volver atrás cuando quieras.</p>
+        <p id="subtitulo-pagina">Cuatro pasos y listo, sin hacer fila. Puedes volver atrás cuando quieras.</p>
       </div>
     </div>
 
@@ -25,6 +25,10 @@
         <div class="aviso aviso--error" id="aviso-bloqueo" role="alert" hidden>
           <p></p>
         </div>
+
+        <noscript>
+          <div class="aviso aviso--error"><p>Para agendar tu cita necesitas activar JavaScript en tu navegador.</p></div>
+        </noscript>
 
         <div id="zona-asistente">
           <ol class="indicador" id="indicador" aria-label="Pasos para agendar">
@@ -59,22 +63,33 @@
               <fieldset class="campo" id="grupo-modo">
                 <legend>¿Cómo quieres escoger tu cita?</legend>
                 <div class="opciones">
-                  <label class="opcion"><input type="radio" name="modo" value="automatico" checked> <span>Automática: el sistema me asigna un cupo libre</span></label>
-                  <label class="opcion"><input type="radio" name="modo" value="manual"> <span>Manual: yo escojo el día y la hora</span></label>
+                  <label class="opcion-servicio">
+                    <input type="radio" name="modo" value="automatico" checked>
+                    <span class="servicio__icono" aria-hidden="true">⚡</span>
+                    <span><strong>Automática</strong><small>El sistema te asigna un día y una hora libres. Es lo más rápido.</small></span>
+                  </label>
+                  <label class="opcion-servicio">
+                    <input type="radio" name="modo" value="manual">
+                    <span class="servicio__icono" aria-hidden="true">📅</span>
+                    <span><strong>Manual</strong><small>Tú escoges el día y la hora entre los cupos disponibles.</small></span>
+                  </label>
                 </div>
               </fieldset>
 
               <div class="aviso aviso--info" id="aviso-reasignacion" role="status" hidden><p></p></div>
 
               <div id="zona-manual" hidden>
-                <div class="campo">
-                  <label for="dia-manual">Día</label>
-                  <select id="dia-manual"></select>
+                <div class="dos-campos">
+                  <div class="campo">
+                    <label for="dia-manual">Día</label>
+                    <select id="dia-manual"></select>
+                  </div>
+                  <div class="campo">
+                    <label for="hora-manual">Hora</label>
+                    <select id="hora-manual"></select>
+                  </div>
                 </div>
-                <div class="campo">
-                  <label for="hora-manual">Hora (de 6:00 a. m. a 4:00p. m.)</label>
-                  <select id="hora-manual"></select>
-                </div>
+                <p class="campo__ayuda">Las horas marcadas como «ocupada» ya fueron tomadas por otra persona.</p>
               </div>
 
               <fieldset class="campo" id="grupo-asignacion" tabindex="-1" aria-describedby="error-grupo-asignacion">
@@ -108,6 +123,7 @@
                 <p class="campo__error" id="error-grupo-registradaPor"></p>
               </fieldset>
 
+              <h3 style="margin:1.5rem 0 .25rem;font-size:1.1rem">Datos del paciente</h3>
               <div class="dos-campos">
                 <div class="campo">
                   <label for="nombres">Nombres</label>
@@ -137,7 +153,7 @@
               <div class="dos-campos">
                 <div class="campo">
                   <label for="cedula">Cédula</label>
-                  <input type="text" id="cedula" inputmode="numeric" autocomplete="off" aria-describedby="ayuda-cedula error-cedula">
+                  <input type="text" id="cedula" inputmode="numeric" maxlength="12" autocomplete="off" aria-describedby="ayuda-cedula error-cedula">
                   <p class="campo__ayuda" id="ayuda-cedula">Solo números, sin puntos. Para niños, el documento que tengan.</p>
                   <p class="campo__error" id="error-cedula"></p>
                 </div>
@@ -149,10 +165,11 @@
                 </div>
               </div>
 
+              <h3 style="margin:1.5rem 0 .25rem;font-size:1.1rem">Contacto y atención</h3>
               <div class="dos-campos">
                 <div class="campo">
                   <label for="telefono">Teléfono</label>
-                  <input type="tel" id="telefono" inputmode="tel" autocomplete="tel-national" aria-describedby="ayuda-telefono error-telefono">
+                  <input type="tel" id="telefono" inputmode="tel" maxlength="14" autocomplete="tel-national" aria-describedby="ayuda-telefono error-telefono">
                   <p class="campo__ayuda" id="ayuda-telefono">10 números, por ejemplo 3001234567.</p>
                   <p class="campo__error" id="error-telefono"></p>
                 </div>
@@ -186,7 +203,7 @@
             <!-- Paso 4 -->
             <section class="paso" data-paso="4" aria-labelledby="titulo-paso-4" hidden>
               <h2 id="titulo-paso-4" tabindex="-1">4. Revisa y confirma</h2>
-              <p class="campo__ayuda">Verifica que todo esté bien. Puedes cambiar cualquier dato.</p>
+              <p class="campo__ayuda">Verifica que todo esté bien. Con el botón «Cambiar» de cada fila puedes corregir ese dato antes de confirmar.</p>
               <dl class="resumen" id="resumen"></dl>
 
               <div class="campo" style="margin-top:.5rem">

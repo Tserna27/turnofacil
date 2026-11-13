@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const s = buscarServicio(estado.servicioId);
     const manual = estado.modo === "manual";
     document.getElementById("texto-servicio-elegido").textContent = "Servicio elegido: " + s.nombre + ". " + (manual
-      ? "Escoge el día y la hora que prefieras entre los cupos libres (de 7:00 a. m. a 3:00 p. m.)."
+      ? "Escoge el día y la hora que prefieras entre los cupos libres (" + TEXTO_HORARIO + ")."
       : "El sistema te asigna un día y una hora libres de los próximos días hábiles.");
 
     document.getElementById("zona-manual").hidden = !manual;
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.getElementById("detalle-dia").innerHTML =
-      `<strong>Lugar:</strong> ${escaparHtml(DIRECCION_ATENCION)}.<br>Atendemos de lunes a viernes, de 7:00 a. m. a 3:00 p. m. Después de confirmar, la cita solo la puede cambiar o cancelar la administración: escribe a <a href="mailto:${escaparHtml(CORREO_ATENCION)}">${escaparHtml(CORREO_ATENCION)}</a>.`;
+      `<strong>Lugar:</strong> ${escaparHtml(DIRECCION_ATENCION)}.<br>Atendemos de lunes a viernes, ${TEXTO_HORARIO}. Después de confirmar, la cita solo la puede cambiar o cancelar la administración: escribe a <a href="mailto:${escaparHtml(CORREO_ATENCION)}">${escaparHtml(CORREO_ATENCION)}</a>.`;
   }
 
   /* ---------- Paso 3: datos del paciente ---------- */

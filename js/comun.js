@@ -65,14 +65,15 @@ function generarFranjas(primera, ultima) {
   return horas;
 }
 
-// Horario de atención: de 7:00 a. m. a 3:00 p. m. (la última consulta empieza a las 2:45 p. m.)
-const HORAS_MANANA = generarFranjas("07:00", "15:45");
+// Horario de atención: de 6:00 a. m. a 4:00 p. m. (última cita a las 3:45 p. m.)
+const HORA_APERTURA = "06:00";
+const HORA_ULTIMA_CONSULTA = "15:45";
+const HORAS_MANANA = generarFranjas(HORA_APERTURA, HORA_ULTIMA_CONSULTA);
 const HORAS_TARDE = [];
-
-// Festivos de Colombia (no hay citas esos días)
-const FESTIVOS = ["2026-11-02", "2026-11-16", "2026-12-08", "2026-12-25", "2027-01-01", "2027-01-11"];
-
-const DIAS_VISIBLES = 10; // días hábiles que se muestran al agendar
+const TEXTO_HORARIO = "de " + formatearHora(HORA_APERTURA) + " a " + formatearHora(horaFinConsulta(HORA_ULTIMA_CONSULTA));
+// Médicos que atienden al mismo tiempo: cada franja de 15 minutos tiene este número de cupos.
+// Con 40 franjas al día: 1 médico = 40 cupos, 2 = 80 cupos, 3 = 120 cupos por servicio y día.
+const MEDICOS_POR_FRANJA = 2;
 
 /* ---------- Almacenamiento en el navegador ---------- */
 
@@ -285,19 +286,25 @@ function diasDisponibles() {
 }
 function todasLasHoras() { return HORAS_MANANA.concat(HORAS_TARDE); }
 
-// Un cupo está ocupado si ya lo tomó otra persona (simulado) o una cita programada de este navegador.
+// Cupos ya tomados en una franja: por otras personas (simulado) o por citas programadas de este navegador.
+function cuposTomadosEnFranja(servicioId, fecha, hora, ignorarId) {
+  let tomados = 0;
+  for (let i = 0; i < MEDICOS_POR_FRANJA; i++) {
+    if (semilla(i + servicioId + fecha + hora) % 100 < 30) tomados++;
+  }
+  return tomados + obtenerCitas().filter((c) => c.estado === "Programada" && c.id !== ignorarId &&
+    c.servicioId === servicioId && c.fecha === fecha && c.hora === hora).length;
+}
+// La franja está ocupada cuando ya no queda ningún cupo libre en ella.
 function cupoOcupado(servicioId, fecha, hora, ignorarId) {
-  if (semilla(servicioId + fecha + hora) % 100 < 30) return true;
-  return obtenerCitas().some((c) => c.estado === "Programada" && c.id !== ignorarId &&
-    c.servicioId === servicioId && c.fecha === fecha && c.hora === hora);
+  return cuposTomadosEnFranja(servicioId, fecha, hora, ignorarId) >= MEDICOS_POR_FRANJA;
 }
+// Cupos libres del día (suma de todas las franjas) y cupos máximos por día.
 function cuposLibres(servicioId, fecha, ignorarId) {
-  return todasLasHoras().filter((h) => !cupoOcupado(servicioId, fecha, h, ignorarId)).length;
+  return todasLasHoras().reduce((total, h) =>
+    total + Math.max(0, MEDICOS_POR_FRANJA - cuposTomadosEnFranja(servicioId, fecha, h, ignorarId)), 0);
 }
-function usuarioTieneCitaEn(correo, fecha, hora, ignorarId) {
-  return obtenerCitas().some((c) => c.estado === "Programada" && c.id !== ignorarId &&
-    c.correoUsuario === correo && c.fecha === fecha && c.hora === hora);
-}
+function cuposPorDia() { return todasLasHoras().length * MEDICOS_POR_FRANJA; }
 
 // La fecha y la hora no se escogen: el sistema sortea una de las franjas libres de los próximos días hábiles.
 // Devuelve { fecha, hora } o null si no hay cupos.

@@ -310,6 +310,10 @@ function cuposLibres(servicioId, fecha, ignorarId) {
     total + Math.max(0, MEDICOS_POR_FRANJA - cuposTomadosEnFranja(servicioId, fecha, h, ignorarId)), 0);
 }
 function cuposPorDia() { return todasLasHoras().length * MEDICOS_POR_FRANJA; }
+function usuarioTieneCitaEn(correo, fecha, hora, ignorarId) {
+  return obtenerCitas().some((c) => c.estado === "Programada" && c.id !== ignorarId &&
+    c.correoUsuario === correo && c.fecha === fecha && c.hora === hora);
+}
 
 // La fecha y la hora no se escogen: el sistema sortea una de las franjas libres de los próximos días hábiles.
 // Devuelve { fecha, hora } o null si no hay cupos.

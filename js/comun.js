@@ -516,7 +516,6 @@ function pintarPie() {
     <div class="contenedor pie__fila">
       <div>
         <p>© ${new Date().getFullYear()} TurnoFácil Quibdó. Todos los derechos reservados.</p>
-        <p>Atención en: ${escaparHtml(DIRECCION_ATENCION)}. Citas de lunes a viernes.</p>
         <p>Prototipo académico: los datos se guardan solo en este navegador.</p>
       </div>
       <ul class="pie__enlaces">

@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.getElementById("detalle-dia").innerHTML =
-      `<strong>Lugar:</strong> ${escaparHtml(DIRECCION_ATENCION)}.<br>Atendemos de lunes a viernes, ${TEXTO_HORARIO}. Después de confirmar, la cita solo la puede cambiar o cancelar la administración: escribe a <a href="mailto:${escaparHtml(CORREO_ATENCION)}">${escaparHtml(CORREO_ATENCION)}</a>.`;
+      `Después de confirmar, la cita solo la puede cambiar o cancelar la administración: escribe a <a href="mailto:${escaparHtml(CORREO_ATENCION)}">${escaparHtml(CORREO_ATENCION)}</a>.`;
   }
 
   /* ---------- Paso 3: datos del paciente ---------- */

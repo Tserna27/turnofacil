@@ -2,7 +2,7 @@
 
 Prototipo web para agendar citas médicas en Quibdó (Chocó) desde el celular, sin hacer fila de madrugada para conseguir un ficho.
 
-Está hecho solo con **HTML, CSS y JavaScript**, todo en español. No necesita servidor, base de datos ni instalar nada.
+Está hecho solo con **HTML, CSS, JavaScript y hosting gratuito render**, todo en español. No necesita servidor, base de datos ni instalar nada.
 
 ## ¿Qué problema resuelve?
 
@@ -13,7 +13,7 @@ Está pensado sobre todo para adultos mayores, gestantes y madres o padres con n
 ## Cómo abrirlo
 
 1. Clona el repositorio o descomprime la carpeta.
-2. Abre `index.html` en el navegador (se recomienda Chrome).
+2. Abre `https://turnofacil-t36u.onrender.com/` esto hace que se abra el `index.html` en el navegador (se recomienda Chrome).
 
 Para publicarlo (por ejemplo en Render o GitHub Pages) basta con subir la carpeta completa.
 
@@ -33,7 +33,7 @@ Para publicarlo (por ejemplo en Render o GitHub Pages) basta con subir la carpet
 
 ### Reglas de las citas
 
-- Se atiende de **lunes a viernes**, sin festivos.
+- Se atiende de **lunes a viernes**.
 - El horario es de **6:00 a. m. a 4:00 p. m.** (la última consulta empieza a las 3:45 p. m.).
 - Cada consulta dura **15 minutos**.
 - No se escoge médico. Hay 2 médicos por franja, o sea 2 cupos por cada franja de 15 minutos.
